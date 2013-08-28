@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>BI-Helper :: Ayuda :: Documentaci&oacute;n de Mapeo</title>
+        <link rel="Stylesheet" type="text/css" href="bihelper.css" />
+	</head>
+	<body>
+        
+        <h4>- BI Helper -</h4>
+        <h2>Documentaci&oacute;n de Jobs</h2>
+
+        <h3>Descipci&oacute;n</h3>
+
+        <p>
+            Esta herramienta obtiene las dependencias, es decir, los jobs que deben ejecutarse antes de una lista 
+            de Jobs seleccionados.
+        </p>
+        <p>
+            El resultado son dos documentos:
+        </p>
+        <ul>
+            <li>
+                Dependencias Job por Job
+                <ul>
+                    <li>
+                        Este documento enlista, Job por Job, las dependencias de cada Job.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Dependencias Necesarias
+                <ul>
+                    <li>
+                        Este documento enlista los Jobs seleccionados y las distintas dependencias que son
+                        necesarias para que los Jobs corran, en una lista unificada.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Funcionamiento</h3>
+
+        <ol>
+            <li>
+                Haz clic en el bot&oacute;n "...", para seleccionar un archivo *.xml, que contenga el draft de Jobs
+                de Control-M. Si no sabes como obtener el archivo *.xml a partir del draft, revisa la siguiente 
+                secci&oacute;n, "Exportando un Draft como XML".
+            </li>
+            <li>
+                Se llenará el &aacute;rbol de la izquierda de la pantalla con a informaci&oacute;n de los jobs, organizados
+                jer&aacute;rquicamente por Aplicaci&oacute;n y Grupo.
+            </li>
+            <li>
+                Navega por las Aplicaciones y Grupos para encontrar los Jobs que necesites documentar y seleccionalos mediante
+                la casilla de verificaci&oacute;n de cada Job. Los Jobs seleccionados aparecerán en la parte derecha de la 
+                pantalla.
+            </li>
+            <li>
+                Para eliminar un Job de la lista se tienen dos opciones:
+                <ul>
+                    <li>
+                        Desactivar la casilla de verificaci&oacute;n del Job en el &aacute;rbol.
+                    </li>
+                    <li>
+                        Hacer clic en "Eliminar" del rengl&oacute;n correspondiente del Job en la tabla "Jobs Seleccionados", a
+                        la derecha de la pantalla.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Una vez que selecciones los Jobs que deseas documentar, haz clic en "Obtener Documentos". Se abrir&aacute;n dos
+                pantalla de MS Word, cada una conteniendo un documento, como esta especificado.
+            </li>
+        </ol>
+
+        <p>
+           *NOTA* Puedes exportar el reporte a Excel, haciendo clic en el &iacute;cono del diskette, y seleccionando la
+           opci&oacuten "Excel".
+        </p>
+
+        <h3>Exportando un Draft como XML</h3>
+
+        <ol>
+            <li>
+                Abre Control-M Desktop
+            </li>
+            <li>
+                Haz clic en "File", luego en "Open" y busca el archivo draft deseado.
+            </li>
+            <li>
+                Una vez que el Draft a cargado los trabajos, haz clic en "File", luego en "Save as...". Aparecerá un
+                cuadro de di&aacute;logo para guardar el archivo.
+            </li>
+            <li>
+                En la parte inferior de la ventana de di&aacute;logo, en la caja de lista seleccionable "Save as Type",
+                selecciona "XML File (ExportDefTable Format) *.xml".
+            </li>
+            <li>
+                Selecciona la ruta en la que deseas guardar el archivo y haz clic en "Save".
+            </li>
+            <li>
+                El archivo guardado puede ser utilizado para obtener la documentaci&oacute;n.
+            </li>
+        </ol>
+	</body>
+
+</html>

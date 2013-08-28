@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DD11BB6C-2B1E-437D-AD80-4B8FAB39F233}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BIHelper</RootNamespace>
+    <AssemblyName>BIHelper</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="forms\AnalisisCuboForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\AnalisisCuboForm.Designer.cs">
+      <DependentUpon>AnalisisCuboForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\baseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\baseForm.Designer.cs">
+      <DependentUpon>baseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\BIMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\BIMainForm.Designer.cs">
+      <DependentUpon>BIMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\blankForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\blankForm.Designer.cs">
+      <DependentUpon>blankForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\ConexionMetaDataArtusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ConexionMetaDataArtusForm.Designer.cs">
+      <DependentUpon>ConexionMetaDataArtusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\ConexionesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ConexionesForm.Designer.cs">
+      <DependentUpon>ConexionesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\ControlMDependenciasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ControlMDependenciasForm.Designer.cs">
+      <DependentUpon>ControlMDependenciasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\DocMapeoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\DocMapeoForm.Designer.cs">
+      <DependentUpon>DocMapeoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="lib\AdminConexiones.cs" />
+    <Compile Include="lib\artus\SI_CONCEPTO.cs" />
+    <Compile Include="lib\artus\SI_CONCEPTO_LLAVE.cs" />
+    <Compile Include="lib\artus\SI_DESCRIP_KEYS.cs" />
+    <Compile Include="lib\artus\SI_INDICADOR.cs" />
+    <Compile Include="lib\artus\Vista_Dimensiones_Cubo.cs" />
+    <Compile Include="lib\artus\Vista_Indicadores_Cubo.cs" />
+    <Compile Include="lib\artus\Vista_Periodos_Cubo.cs" />
+    <Compile Include="lib\Conexiones.cs" />
+    <Compile Include="lib\ConexionMetaDataArtus.cs" />
+    <Compile Include="lib\controlm\ControlMImport.cs" />
+    <Compile Include="lib\controlm\JobDefinition.cs" />
+    <Compile Include="lib\controlm\Jobs.cs" />
+    <Compile Include="lib\controlm\Jobs_Predecesors.cs" />
+    <Compile Include="lib\ETLDoc.cs" />
+    <Compile Include="lib\ETLPair.cs" />
+    <Compile Include="lib\ext\BaseFormGradient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="lib\ext\BaseInnerFormGradient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="lib\ext\CustomButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="lib\SqlServerHelper.cs" />
+    <Compile Include="lib\InfaImport.cs" />
+    <Compile Include="lib\MyForms.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="forms\AnalisisCuboForm.resx">
+      <DependentUpon>AnalisisCuboForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\baseForm.resx">
+      <DependentUpon>baseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\BIMainForm.resx">
+      <DependentUpon>BIMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\blankForm.resx">
+      <DependentUpon>blankForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ConexionMetaDataArtusForm.resx">
+      <DependentUpon>ConexionMetaDataArtusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ConexionesForm.resx">
+      <DependentUpon>ConexionesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ControlMDependenciasForm.resx">
+      <DependentUpon>ControlMDependenciasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\DocMapeoForm.resx">
+      <DependentUpon>DocMapeoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lib\ext\BaseInnerFormGradient.resx">
+      <DependentUpon>BaseInnerFormGradient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="reports\DetalleCuboReport.rdlc" />
+    <EmbeddedResource Include="reports\DocumentacionMapeoReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\BIHelper.lib.artus.SI_CONCEPTO.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.artus.SI_CPTO_LLAVE.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.artus.SI_DESCRIP_KEYS.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.artus.SI_INDICADOR.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.artus.Vista_Dimensiones_Cubo.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.artus.Vista_Indicadores_Cubo.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.artus.Vista_Periodos_Cubo.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.ConexionArtus.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.ConexionMetaDataArtus.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.controlm.JobDefinition.datasource" />
+    <None Include="Properties\DataSources\BIHelper.lib.ETLDoc.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="help\bihelper.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\AltaArtusMetaData.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\AdminConexiones.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\Inicio.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\Job.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\Cubo.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\Mapeo.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bihelper.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

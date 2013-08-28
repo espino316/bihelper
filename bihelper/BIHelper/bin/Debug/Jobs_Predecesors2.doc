@@ -1,0 +1,24 @@
+<html>
+	<head><title>Listado de Tareas Proyecto ROPA</title></head>
+	<body style="font-family: 'Segoe UI';">
+		<h1>Listado de Jobs y sus dependencias en Control M</h1>
+		<br/>
+		<table>
+			<tr><th>JOB</th></tr>
+			<tr><td>VALIDA_DIARIO_MIGRADOR_TH_VENTAS_SUBFAMILIA</td></tr>
+			<tr><td>BORRA_DIARIO_CACHEARTUS_TH_VENTAS_SUBFAMILIA</td></tr>
+			<tr><td>VALIDA_CARGA_VENTASHORAS</td></tr>
+			<tr><td>VALIDA_DIARIO_INFO_TH_HUECOSIA</td></tr>
+		</table>
+		<h2>Dependencias Necesarias (Predecesores)</h2>
+		<br/>
+		<ul>
+			<li>VALIDA_CARGA_VENTASHORAS</li>
+			<li>VENTAXHORA_ATENEA</li>
+			<li>PROCESA_PREVIO_VENTAS</li>
+			<li>PROCESO_FRECUENTE</li>
+			<li>ATENEA_PROCESO_HUECOS</li>
+			<li>ATENEA_PROCESO_HUECOS_ESCANEADOS</li>
+			<li>GENERA_PARAMETROS_FECHA</li>
+			<li>ATENEA_ACTUALIZA_PARAMETROS</li>
+		</ul>
