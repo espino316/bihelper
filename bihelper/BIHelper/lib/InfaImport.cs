@@ -373,10 +373,44 @@ namespace BIHelper.lib
 
                         XmlNode transformationFieldNode = xdoc.SelectSingleNode(xpath);
 
-                        //  Configuramos sus datos
-                        etldoc.Fuente_Campo = fromField;
-                        etldoc.Fuente_TipoDatos = transformationFieldNode.Attributes.GetNamedItem("DATATYPE").Value;
-                        etldoc.Fuente_Tamano = transformationFieldNode.Attributes.GetNamedItem("PRECISION").Value;
+                        //  Si es nulo
+                        if (transformationFieldNode == null)
+                        {
+                            //  Entonces es un mapplet
+                            xpath = string.Format(
+                                    "/POWERMART/REPOSITORY/FOLDER/MAPPLET[@NAME='{0}']/CONNECTOR[@TOFIELD='{1}']",
+                                    mappingPair.Fuente,
+                                    fromField
+                                );
+
+                            transformationFieldNode = xdoc.SelectSingleNode(xpath);
+
+                            //  El nombre de la instancia del mapplet
+                            string toInstance = transformationFieldNode.Attributes.GetNamedItem("TOINSTANCE").Value;
+
+                            //  Obtenemos el transformfield del mapplet
+                            xpath = string.Format(
+                                    "/POWERMART/REPOSITORY/FOLDER/MAPPLET[@NAME='{0}']/TRANSFORMATION[@NAME='{1}']/TRANSFORMFIELD[@NAME='{2}']",                                    
+                                    mappingPair.Fuente,
+                                    toInstance,
+                                    fromField
+                                );
+
+                            transformationFieldNode = xdoc.SelectSingleNode(xpath);
+
+                            //  Configuramos sus datos
+                            etldoc.Fuente_Campo = fromField;
+                            etldoc.Fuente_TipoDatos = transformationFieldNode.Attributes.GetNamedItem("DATATYPE").Value;
+                            etldoc.Fuente_Tamano = transformationFieldNode.Attributes.GetNamedItem("PRECISION").Value;
+                        }
+                        else // Si es transformacion
+                        {
+                            //  Configuramos sus datos
+                            etldoc.Fuente_Campo = fromField;
+                            etldoc.Fuente_TipoDatos = transformationFieldNode.Attributes.GetNamedItem("DATATYPE").Value;
+                            etldoc.Fuente_Tamano = transformationFieldNode.Attributes.GetNamedItem("PRECISION").Value;
+                        }
+                        
 
                         //  El tipo de transformación lo obtenemos del tipo de fuente del par de mapeo
                         etldoc.Transformacion_Tipo = mappingPair.TipoFuente;
@@ -512,7 +546,7 @@ namespace BIHelper.lib
 
                             case "Custom Transformation":
 
-                                etldoc.Transformacion_Detalle = "GROUP: " + transformationFieldNode.Attributes.GetNamedItem("PORTYPE").Value;
+                                etldoc.Transformacion_Detalle = "GROUP: " + transformationFieldNode.Attributes.GetNamedItem("PORTTYPE").Value;
 
                                 break;
 

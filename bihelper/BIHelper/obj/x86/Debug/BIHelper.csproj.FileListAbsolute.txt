@@ -95,3 +95,4 @@ D:\SOURCECODE\Git\bihelper\bihelper\BIHelper\obj\x86\Debug\BIHelper.Properties.R
 D:\SOURCECODE\Git\bihelper\bihelper\BIHelper\obj\x86\Debug\BIHelper.csproj.GenerateResource.Cache
 D:\SOURCECODE\Git\bihelper\bihelper\BIHelper\obj\x86\Debug\RdlCompile.cache
 D:\SOURCECODE\Git\bihelper\bihelper\BIHelper\obj\x86\Debug\RdlCompile.compiled
+D:\SOURCECODE\Git\bihelper\bihelper\BIHelper\obj\x86\Debug\BIHelper.csprojResolveAssemblyReference.cache
