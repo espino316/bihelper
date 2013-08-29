@@ -159,9 +159,59 @@ namespace BIHelper.forms
 
                 //  Cargamos las conexiones actuales
                 admin.CargarConexiones();
+                
+                //  Obtenemos la conexión
+                ConexionMetaDataArtus conn = SetConn();
 
-                //  Agregamos las nueva conexión
-                admin.Conexiones.ConexionesMetaDataArtus.Add(SetConn());
+                //  Variable para determinar si la conexión existe
+                bool existe = false;
+                int index = 0;
+
+                //  Verificamos la existencia de la conexión
+                if (admin.Conexiones.ConexionesMetaDataArtus.Count > 0)
+                {                    
+                    //  Recorremos las conexiónes
+                    foreach (ConexionMetaDataArtus connArtus in admin.Conexiones.ConexionesMetaDataArtus)
+                    {                        
+                        //  Comparamos por nombre
+                        if(connArtus.Nombre.ToUpper().Equals(conn.Nombre.ToUpper()))
+                        {
+                            //  Si existe, salimos del foreach
+                            existe = true;
+                            index = admin.Conexiones.ConexionesMetaDataArtus.IndexOf(connArtus);
+                            break;
+
+                        } // end if
+
+                    } // end foreach
+
+                    //  Si existe
+                    if (existe)
+                    {
+                        //  Si fue declarada como nueva conexión
+                        if (EsNueva)
+                        {
+                            throw new Exception("El nombre de la conexión ya existe. Elije otro o actualiza la conexión existente");
+                        }
+
+                        //  La actualizamos
+                        admin.Conexiones.ConexionesMetaDataArtus[index].Servidor = conn.Servidor;
+                        admin.Conexiones.ConexionesMetaDataArtus[index].BaseDatos = conn.BaseDatos;
+                        admin.Conexiones.ConexionesMetaDataArtus[index].Usuario = conn.Usuario;
+                        admin.Conexiones.ConexionesMetaDataArtus[index].Password = conn.Password;                        
+                    }
+                    else // Si no
+                    {
+                        //  La agregamos 
+                        admin.Conexiones.ConexionesMetaDataArtus.Add(SetConn());
+                    }
+                }
+                else // Si la colección está vacía
+                {
+                    //  Agregamos las nueva conexión
+                    admin.Conexiones.ConexionesMetaDataArtus.Add(SetConn());
+                }
+                
 
                 //  Guardamos las conexiones
                 admin.Guardar();

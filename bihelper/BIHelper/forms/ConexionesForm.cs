@@ -171,6 +171,9 @@ namespace BIHelper.forms
                     //  Establecemos la conexión a modificar
                     MyForms.ConexionMetadataArtus.Conexion = artusConn;
 
+                    //  Mandamos llamar a BindData
+                    MyForms.ConexionMetadataArtus.BindData();
+
                     //  Mostramos la forma
                     MyForms.ConexionMetadataArtus.Show();
 
