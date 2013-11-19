@@ -37,6 +37,7 @@
             this.AyudaButton = new Dotnetrix.CustomButton();
             this.ConexionesButton = new Dotnetrix.CustomButton();
             this.BIMainImageList = new System.Windows.Forms.ImageList(this.components);
+            this.WorkFlowViewerButton = new Dotnetrix.CustomButton();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.DocumentacionTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -105,6 +106,7 @@
             // 
             this.HerramientasFlowLayoutPanel.Controls.Add(this.AyudaButton);
             this.HerramientasFlowLayoutPanel.Controls.Add(this.ConexionesButton);
+            this.HerramientasFlowLayoutPanel.Controls.Add(this.WorkFlowViewerButton);
             this.HerramientasFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HerramientasFlowLayoutPanel.Location = new System.Drawing.Point(154, 0);
             this.HerramientasFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -156,6 +158,27 @@
             this.BIMainImageList.Images.SetKeyName(1, "cubo.png");
             this.BIMainImageList.Images.SetKeyName(2, "job.png");
             this.BIMainImageList.Images.SetKeyName(3, "conn.png");
+            this.BIMainImageList.Images.SetKeyName(4, "workflowinfo.png");
+            // 
+            // WorkFlowViewerButton
+            // 
+            this.WorkFlowViewerButton.BackColor = System.Drawing.Color.Firebrick;
+            this.WorkFlowViewerButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.WorkFlowViewerButton.ForeColor = System.Drawing.Color.White;
+            this.WorkFlowViewerButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.WorkFlowViewerButton.ImageIndex = 4;
+            this.WorkFlowViewerButton.ImageList = this.BIMainImageList;
+            this.WorkFlowViewerButton.Location = new System.Drawing.Point(285, 3);
+            this.WorkFlowViewerButton.Name = "WorkFlowViewerButton";
+            this.WorkFlowViewerButton.RoundCorners = ((Dotnetrix.Corners)((((Dotnetrix.Corners.TopLeft | Dotnetrix.Corners.TopRight) 
+            | Dotnetrix.Corners.BottomLeft) 
+            | Dotnetrix.Corners.BottomRight)));
+            this.WorkFlowViewerButton.Size = new System.Drawing.Size(152, 34);
+            this.WorkFlowViewerButton.TabIndex = 6;
+            this.WorkFlowViewerButton.Text = "Workflow Info";
+            this.WorkFlowViewerButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.WorkFlowViewerButton.UseVisualStyleBackColor = true;
+            this.WorkFlowViewerButton.Click += new System.EventHandler(this.WorkFlowViewerButton_Click);
             // 
             // TitleLabel
             // 
@@ -320,5 +343,6 @@
         private Dotnetrix.CustomButton AyudaButton;
         private Dotnetrix.CustomButton ConexionesButton;
         private System.Windows.Forms.ImageList BIMainImageList;
+        private Dotnetrix.CustomButton WorkFlowViewerButton;
     }
 }

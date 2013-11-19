@@ -625,6 +625,421 @@ namespace BIHelper.lib
 
         } // GetMapeos
 
+        /// <summary>
+        /// Ubica todos los mapeos en los que participa un campo
+        /// </summary>
+        /// <param name="fileName">El nombre del campo a buscar</param>
+        public List<FieldDoc> FieldFinder(string fieldName)
+        {
+            //  El listado de documentación de registros
+            //  del campo
+            List<FieldDoc> fieldDocs = new List<FieldDoc>();
+
+            //  Cadena para almacenar las expresiones xPath
+            string xPathExp = "";
+
+            //  Variable local para almacenar el archivo XML importado
+            //  de Informatica Power Center
+            string fileName = this.INFA_XmlFilePath;
+
+            //  Verificamos que el archivo ha sido configurado
+            if (string.IsNullOrEmpty(fileName))
+            {
+                throw new Exception("El archivo no ha sido configurado");
+            }
+
+            //  Verificamos que el archivo existe
+            if (!File.Exists(fileName))
+            {
+                throw new Exception("El archivo no existe.");
+            }
+
+            //  La variable que contendrá el documento XML
+            XmlDocument xdoc = new XmlDocument();
+
+            //  Eliminamos la necesidad de expecificar un XmlResolver
+            xdoc.XmlResolver = null;
+
+            //  Cargamos el archivo
+            xdoc.Load(fileName);
+
+            //  Expresión XParth para obtener los targets del mapeo
+            xPathExp = "/POWERMART/REPOSITORY/FOLDER/MAPPING/TRANSFORMATION/TRANSFORMFIELD[@NAME='PRD_STATUS']";
+
+            //  Listado de nodos obtenidos
+            XmlNodeList fieldNodes =
+                xdoc.SelectNodes(
+                    xPathExp
+                );
+
+            //  Recorro los nodos
+            foreach (XmlNode fieldNode in fieldNodes)
+            {
+                //  Obtengo el nombre del campo
+                //  por definicion es fieldName
+
+                //  Obtengo el tipo de dato
+                string tipoDato = fieldNode.Attributes.GetNamedItem("DATATYPE").Value;
+
+                //  Obtengo la longitud
+                string tamano = fieldNode.Attributes.GetNamedItem("PRECISION").Value;
+
+                //  Obtengo la transformación
+                XmlNode transformacionNode = fieldNode.SelectSingleNode("..");
+
+                //  Obtengo el nombre de la transformación
+                string nombreTransformacion = transformacionNode.Attributes.GetNamedItem("NAME").Value;
+
+                //  Obtengo el mapeo
+                XmlNode mapeoNode = transformacionNode.SelectSingleNode("..");
+
+                //  Obtengo el nombre del mapeo
+                string nombreMapeo = mapeoNode.Attributes.GetNamedItem("NAME").Value;
+
+                //  Creamos un FieldDoc y lo agregamos a la lista
+                FieldDoc fieldDoc = new FieldDoc();
+                fieldDoc.TipoMapeo = "MAPPING";
+                fieldDoc.Nombre = nombreMapeo;
+                fieldDoc.Transformacion = nombreTransformacion;
+                fieldDoc.TipoTransformacion = nombreTransformacion;
+                fieldDoc.Campo = fieldName;
+                fieldDoc.TipoDato = tipoDato;
+                fieldDoc.Longitud = tamano;
+
+                fieldDocs.Add(fieldDoc);
+
+            } // end foreach
+
+            //  Expresión XParth para obtener los targets del mapeo
+            xPathExp = "/POWERMART/REPOSITORY/FOLDER/MAPPLET/TRANSFORMATION/TRANSFORMFIELD[@NAME='PRD_STATUS']";
+
+            //  Listado de nodos obtenidos
+            fieldNodes =
+                xdoc.SelectNodes(
+                    xPathExp
+                );
+
+            //  Recorro los nodos
+            foreach (XmlNode fieldNode in fieldNodes)
+            {
+                //  Obtengo el nombre del campo
+                //  por definicion es fieldName
+
+                //  Obtengo el tipo de dato
+                string tipoDato = fieldNode.Attributes.GetNamedItem("DATATYPE").Value;
+
+                //  Obtengo la longitud
+                string tamano = fieldNode.Attributes.GetNamedItem("PRECISION").Value;
+
+                //  Obtengo la transformación
+                XmlNode transformacionNode = fieldNode.SelectSingleNode("..");
+
+                //  Obtengo el nombre de la transformación
+                string nombreTransformacion = transformacionNode.Attributes.GetNamedItem("NAME").Value;
+
+                //  Obtengo el mapeo
+                XmlNode mapeoNode = transformacionNode.SelectSingleNode("..");
+
+                //  Obtengo el nombre del mapeo
+                string nombreMapeo = mapeoNode.Attributes.GetNamedItem("NAME").Value;
+
+                //  Creamos un FieldDoc y lo agregamos a la lista
+                FieldDoc fieldDoc = new FieldDoc();
+                
+                fieldDoc.TipoMapeo = "MAPPLET";
+                fieldDoc.Nombre = nombreMapeo;
+                fieldDoc.Transformacion = nombreTransformacion;
+                fieldDoc.TipoTransformacion = nombreTransformacion;
+                fieldDoc.Campo = fieldName;
+                fieldDoc.TipoDato = tipoDato;
+                fieldDoc.Longitud = tamano;
+
+                fieldDocs.Add(fieldDoc);
+
+            } // end foreach
+
+            //  Regresamos la lista
+            return fieldDocs;
+
+        } // end FieldFinder
+
+        /// <summary>
+        /// Obtiene la información de Workflows de un archivo
+        /// </summary>
+        /// <returns></returns>
+        public WorkFlowViewerData GetWorkFlowData()
+        {
+            //  Los datos de los workflows
+            WorkFlowViewerData wflData = new WorkFlowViewerData();
+
+            //  Esta variable contendrá las expresiones XPath
+            string xPathExp = "";
+
+            //  El nombre del archivo exportado de Informatica Power Center
+            string fileName = this.INFA_XmlFilePath;
+
+            //  Si el archivo esta vacio
+            if (string.IsNullOrEmpty(fileName))
+            {
+                //  Lanzamos un error
+                throw new Exception("El archivo no existe o es nulo");
+            }
+
+            //  El documento xml utilizado para procesar la información
+            XmlDocument xdoc = new XmlDocument();
+
+            //  Prevenimos la utilización de DTD's
+            xdoc.XmlResolver = null;
+
+            //  Cargamos el archivo
+            xdoc.Load(fileName);
+
+            //  Obtengo los workflows
+            xPathExp = "/POWERMART/REPOSITORY/FOLDER/WORKFLOW";
+
+            XmlNodeList workflowsNodes =
+                xdoc.SelectNodes(
+                    xPathExp
+                );
+
+            //  Si no hay workflows, mandar error
+            if (workflowsNodes.Count == 0)
+            {
+                throw new Exception("Archivo XML no contiene Workflows");
+            }
+
+            //  Para cada Workflow
+            foreach (XmlNode workflowNode in workflowsNodes)
+            {
+                //  Obtenemos el nombre del workflow
+                string name = workflowNode.Attributes.GetNamedItem("NAME").Value;
+
+                //  Instanciamos el workflow
+                WorkFlowViewerData.WorkFlow workflow = new WorkFlowViewerData.WorkFlow();
+                workflow.Name = name;
+
+                //  Obtenemos las sessiones (taskinstance)
+                XmlNodeList sessionsNodes = workflowNode.SelectNodes("TASKINSTANCE[@TASKTYPE='Session']");
+
+                //  Para cada session
+                foreach (XmlNode sessionNode in sessionsNodes)
+                {
+                    //  Obtenemos el nombre de la session
+                    string sessionName = sessionNode.Attributes.GetNamedItem("TASKNAME").Value;
+
+                    //  Instanciamos la session
+                    WorkFlowViewerData.Session session = new WorkFlowViewerData.Session();
+
+                    //  Configuramos el nombre
+                    session.Name = sessionName;
+
+                    //  Obtenemos si es reusable
+                    string reusable = sessionNode.Attributes.GetNamedItem("REUSABLE").Value;
+
+                    session.IsReusable = reusable.Equals("YES") ? true : false;
+
+                    //  Obtenemos el mapeo de la sesion
+                    //  Si es reusable, está fuera del workflow
+                    //  Si no, está dentro del workflow
+
+                    //  La variable que contendrá la sesion
+                    XmlNode sessionElementNode;
+
+                    if (session.IsReusable)
+                    {
+                        sessionElementNode =
+                            xdoc.SelectSingleNode("/POWERMART/REPOSITORY/FOLDER/SESSION[@NAME='" + sessionName + "']");
+                    }
+                    else
+                    {
+                        sessionElementNode = 
+                            workflowNode.SelectSingleNode("SESSION[@NAME='" + sessionName + "']");
+                    }
+
+                    //  Obtenemos el nombre del Mapping
+                    string mappingName = sessionElementNode.Attributes.GetNamedItem("MAPPINGNAME").Value;
+
+                    //  Instanciamos el mappping
+                    WorkFlowViewerData.Mapping mapping = new WorkFlowViewerData.Mapping();
+
+                    mapping.Name = mappingName;
+
+                    //  Obtenemos el mapping element
+                    XmlNode mappingElementNode =
+                        xdoc.SelectSingleNode("/POWERMART/REPOSITORY/FOLDER/MAPPING[@NAME='" + mappingName + "']");
+
+                    //  Obtenemos las sources del mapping
+                    XmlNodeList sourcesNodes =
+                        mappingElementNode.SelectNodes("INSTANCE[@TYPE='SOURCE']");
+
+                    //  Recorremos las sources
+                    foreach (XmlNode sourceNode in sourcesNodes)
+                    {
+                        //  Obtenemos el nombre
+                        string sourceName =
+                            sourceNode.Attributes.GetNamedItem("TRANSFORMATION_NAME").Value;
+
+                        //  Instanciamos la source
+                        WorkFlowViewerData.Source source = new WorkFlowViewerData.Source();
+                        source.Name = sourceName;
+
+                        //  Obtenemos los nodos de los campos
+                        XmlNodeList sourceFieldsNodes =
+                            sourceNode.SelectNodes(
+                                "/POWERMART/REPOSITORY/FOLDER/SOURCE[@NAME='" + sourceName + "']/SOURCEFIELD"
+                            );
+
+                        //  Recorremos los nodos
+                        foreach (XmlNode sourceFieldNode in sourceFieldsNodes)
+                        {
+                            string sourceFieldName =
+                                sourceFieldNode.Attributes.GetNamedItem("NAME").Value;
+
+                            string sourceFieldDataType =
+                                sourceFieldNode.Attributes.GetNamedItem("DATATYPE").Value;
+
+                            string sourceFieldPrecision =
+                                sourceFieldNode.Attributes.GetNamedItem("PRECISION").Value;
+
+                            WorkFlowViewerData.SourceField sourceField = new WorkFlowViewerData.SourceField();
+
+                            sourceField.Name = sourceFieldName;
+                            sourceField.DataType = sourceFieldDataType;
+                            sourceField.Precision = sourceFieldPrecision;
+
+                            //   Agregamos a la fuente
+                            source.SourceFields.Add(sourceField);
+
+                        } // end foreach sourceFieldsNodes
+
+                        //  La agregamos al mapeo
+                        mapping.Sources.Add(source);
+
+                    } // end foreach
+
+
+                    //  Obtenemos los targets del mapping
+                    XmlNodeList targetsNodes =
+                        mappingElementNode.SelectNodes("INSTANCE[@TYPE='TARGET']");
+
+                    //  Recorremos las targets
+                    foreach (XmlNode targetNode in targetsNodes)
+                    {
+                        //  Obtenemos el nombre
+                        string targetName =
+                            targetNode.Attributes.GetNamedItem("TRANSFORMATION_NAME").Value;
+
+                        //  Instanciamos la source
+                        WorkFlowViewerData.Target target = new WorkFlowViewerData.Target();
+                        target.Name = targetName;
+
+                        //  Obtenemos los nodos de los campos
+                        XmlNodeList targetFieldsNodes = 
+                            targetNode.SelectNodes(
+                                "/POWERMART/REPOSITORY/FOLDER/TARGET[@NAME='" + targetName + "']/TARGETFIELD"
+                            );
+
+                        //  Recorremos los nodos
+                        foreach (XmlNode targetFieldNode in targetFieldsNodes)
+                        {
+                            string targetFieldName =
+                                targetFieldNode.Attributes.GetNamedItem("NAME").Value;
+
+                            string targetFieldDataType =
+                                targetFieldNode.Attributes.GetNamedItem("DATATYPE").Value;
+
+                            string targetFieldPrecision =
+                                targetFieldNode.Attributes.GetNamedItem("PRECISION").Value;
+
+                            WorkFlowViewerData.TargetField targetField = new WorkFlowViewerData.TargetField();
+
+                            targetField.Name = targetFieldName;
+                            targetField.DataType = targetFieldDataType;
+                            targetField.Precision = targetFieldPrecision;
+
+                            //   Agregamos a la fuente
+                            target.TargetFields.Add(targetField);
+
+                        } // end foreach sourceFieldsNodes
+
+                        //  La agregamos al mapeo
+                        mapping.Targets.Add(target);
+
+                    } // end foreach
+
+
+                    //  Obtenemos las transformations del mapping
+                    XmlNodeList transformationNodes =
+                        mappingElementNode.SelectNodes("INSTANCE[@TYPE='TRANSFORMATION']");
+
+                    //  Recorremos las transformations
+                    foreach (XmlNode transformationNode in transformationNodes)
+                    {
+                        //  Obtenemos el nombre
+                        string transformationName =
+                            transformationNode.Attributes.GetNamedItem("TRANSFORMATION_NAME").Value;
+
+                        string transformationType =
+                            transformationNode.Attributes.GetNamedItem("TRANSFORMATION_TYPE").Value;
+
+                        //  Instanciamos la source
+                        WorkFlowViewerData.Transformation transformation = new WorkFlowViewerData.Transformation();
+                        transformation.Name = transformationName;
+                        transformation.Type = transformationType;
+
+                        //  Obtenemos los nodos de los campos
+                        XmlNodeList tranformationFieldsNodes = 
+                            transformationNode.SelectNodes(
+                                "/POWERMART/REPOSITORY/FOLDER/MAPPING[@NAME='" + 
+                                mappingName + 
+                                "']/TRANSFORMATION[@NAME='" + 
+                                transformationName + 
+                                "']/TRANSFORMFIELD"
+                            );
+
+                        //  Recorremos los nodos
+                        foreach (XmlNode tranformationFieldNode in tranformationFieldsNodes)
+                        {
+                            string tranformationFieldName =
+                                tranformationFieldNode.Attributes.GetNamedItem("NAME").Value;
+
+                            string tranformationFieldDataType =
+                                tranformationFieldNode.Attributes.GetNamedItem("DATATYPE").Value;
+
+                            string tranformationFieldPrecision =
+                                tranformationFieldNode.Attributes.GetNamedItem("PRECISION").Value;
+
+                            WorkFlowViewerData.TransformField tranformationField = new WorkFlowViewerData.TransformField();
+
+                            tranformationField.Name = tranformationFieldName;
+                            tranformationField.DataType = tranformationFieldDataType;
+                            tranformationField.Precision = tranformationFieldPrecision;
+
+                            //   Agregamos a la fuente
+                            transformation.TransformFields.Add(tranformationField);
+
+                        } // end foreach sourceFieldsNodes
+                        //  La agregamos al mapeo
+                        mapping.Transformations.Add(transformation);
+
+                    } // end foreach
+
+
+                    //  Agregamos el Mapping a la Session
+                    session.Mapping = mapping;
+
+                    //  La agregamos a las sessiones del workflow
+                    workflow.Sessions.Add(session);
+                }
+
+                //  Lo ingresamos a wflData
+                wflData.Workflows.Add(workflow);
+            }
+
+            //  Regresamos la información obtenida
+            return wflData;
+        }
+
         #endregion
 
     } // end class InfaImport

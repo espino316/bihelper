@@ -151,6 +151,31 @@ namespace BIHelper.lib
         private static forms.blankForm _blank;
 
         /// <summary>
+        /// Formulario para visualizar el contenido de workflows de un archivo xml
+        /// </summary>
+        public static forms.WorkFlowViewerForm WorkFlowViewer
+        {
+            get
+            {
+                if (_WorkFlowViewer == null)
+                    _WorkFlowViewer = new forms.WorkFlowViewerForm();
+
+                if (_WorkFlowViewer.IsDisposed)
+                    _WorkFlowViewer = new forms.WorkFlowViewerForm();
+
+                SetICON(_WorkFlowViewer);
+
+                return _WorkFlowViewer;
+            }
+            set
+            {
+                _WorkFlowViewer = value;
+            }
+        }
+
+        private static forms.WorkFlowViewerForm _WorkFlowViewer;
+
+        /// <summary>
         /// Formulario en blanco
         /// </summary>
         public static forms.blankForm blank

@@ -39,7 +39,8 @@ namespace BIHelper.forms
             DocMapeo,
             DocCubo,
             DocJobs,
-            AdminConexiones
+            AdminConexiones,
+            InfoWorkflow
         }
 
         /// <summary>
@@ -220,6 +221,12 @@ namespace BIHelper.forms
 
                         break;
 
+                    case Opciones.InfoWorkflow:
+
+                        Process.Start("help\\WorkFlowViewer.htm");
+
+                        break;
+
                     default:
                         
                         MessageBox.Show(
@@ -237,6 +244,27 @@ namespace BIHelper.forms
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+        }
+
+        /// <summary>
+        /// Maneja el evento "Click" del control "WorkFlowViewerButton"
+        /// </summary>
+        /// <param name="sender">El control "WorkFlowViewerButton"</param>
+        /// <param name="e">Los argumentos del evento</param>
+        private void WorkFlowViewerButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //  Establecemos la pantalla y la opción en Administrador de Conexiones
+
+                this.DockForm(MyForms.WorkFlowViewer);
+                this.TitleLabel.Text = "BI-Helper :: Informacion de Workflows";
+                this.OpcionActual = Opciones.InfoWorkflow;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         } // end DocCuboButton_Click
 
     } // end class BIMainForm

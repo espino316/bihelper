@@ -329,10 +329,6 @@ namespace BIHelper.forms
 
         } // end jobsTreeView_AfterCheck
 
-        
-
-        #endregion
-
         /// <summary>
         /// Maneja el evento "CellClick" del control "jobDefinitionDataGridView"
         /// </summary>
@@ -420,6 +416,8 @@ namespace BIHelper.forms
             } // end finally
 
         } // end DocumentarButton_Click
+
+        #endregion
 
     } // end class ControlMDependenciasForm
 

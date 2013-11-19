@@ -1,0 +1,83 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>BI-Helper :: Ayuda :: Documentaci&oacute;n de Mapeo</title>
+        <link rel="Stylesheet" type="text/css" href="bihelper.css" />
+	</head>
+	<body>
+
+        <h4>- BI Helper -</h4>
+        <h2>Informaci&oacute;n de Workflow</h2>
+
+        <h3>Descripci&oacute;n</h3>
+        <p>
+            Esta opci&oacute;n es &uacute;til para mostrar la informaci&oacute;n de archivos exportados de
+            Informatica Power Center sin tener que cargarlos a un repositorio y sobre-escribir informaci&oacute;n,
+            adem&aacute;s de proporcionar la informaci&oacute;n en orden jer&aacute;quica, mostrado la relaci&oacute;n
+            que existe entre los componentes.
+        </p>
+
+        <h3>Funcionamiento</h3>
+        <ol>
+            <li>
+                Presiona el bot&oacute;n "...", aparecer&aacute; una ventana de di&aacute;logo de selecci&oacute;n de archivo.
+            </li>
+            <li>
+                Selecciona el archivo que contiene el(los) workflows(s) exportado(s) de Inform&aacute;tica Power Center.
+            </li>
+            <li>
+                Aparecer&aacute;n los workflows en el &aacute;rbol. Una carpeta contendrá los workflows, que a su vez contendrán
+                sesiones, que a su vez contendrán un mapeo, que contiene fuentes, destinos y transformaciones.
+            </li>
+            <li>
+                El órden es el siguiente:
+                <ul>
+                    <li>
+                        Workflow
+                            <ul>
+                                <li>
+                                    Session
+                                    <ul>
+                                        <li>
+                                            Mapping
+                                            <ul>
+                                                <li>
+                                                    Sources
+                                                    <ul>
+                                                        <li>
+                                                            Source Fields
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    Targets
+                                                    <ul>
+                                                        <li>
+                                                            Target Fields
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <ul>
+                                                <li>
+                                                    Transformations
+                                                    <ul>
+                                                        <li>
+                                                            Transformation Fields
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+	</body>
+</html>
